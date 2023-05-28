@@ -1,0 +1,155 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow:visible;
+}
+body{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  background-image: url(./image/images/bg-image1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
+  
+}
+
+.nevbar{
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+align-items: center;
+padding: 0% 2%;
+height: 10vh;
+width: 100vw;
+background-color: rgba(0, 0, 0, 0.486);
+color: white;
+box-shadow: 0px 0px 3px 3px rgba(25, 0, 248, 0.233);  
+
+
+}
+.nevbar:hover{
+  transform: scale(1.01,1.01);
+  box-shadow: 0px 0px 0.5px 0.5px rgb(45, 0, 248);  
+background-color: rgba(45, 0, 248, 0.24);
+}
+
+.nevbar button{
+  padding: 6px 8px;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+
+}
+.nevbar button:hover{
+  transform: scale(1.1,1.1);
+  box-shadow: 0px 0px 2px 2px rgb(255, 255, 255);
+}
+
+.container{
+    display: flex;
+  flex-wrap: wrap;
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  float: left;
+  padding: auto;
+
+}
+.box1,.box2{
+  height: 350px;
+  width: 250px;
+  background-color: rgba(0, 0, 0, 0.521);
+  color: #fff ;
+  margin: 7% 14%;
+  border-radius: 9px;
+  box-shadow: 0px 0px 4px 4px  rgba(17, 1, 87, 0.253); 
+}
+
+.box1:hover,.box2:hover{
+  transform:scale(1.2,1.2);
+  box-shadow: 0px 0px 5px 5px rgba(5, 4, 8, 0.658);
+  
+}
+.card_image{
+  width: 100%;
+  border-radius:9px ;
+  height: 100px;
+  background-image: url(./image/images/istockphoto-1313455188-1024x1024.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.circle{
+  height: 90px;
+  width: 90px;
+  position: relative;
+  top: -45px;
+  left: 80px;
+  z-index: 1;
+  background-image: url(./image/images/coin.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+}
+  
+.content {
+  position: relative;
+  top: -40px;
+  left: 25px;
+  
+}
+.content h2{
+  margin: 5px 50px ;
+  
+}
+.content label , input{
+  margin: 4px;
+  font-weight: bold;
+  
+}
+.content input{
+  padding: 3px;
+  border-radius: 4px;
+  opacity: 0.9;
+  color:#fff;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.514);
+  box-shadow: 1.5px 1.5px 0px 0px blue;
+  border: 2px solid black;
+}
+.content input:hover{
+  transform: scale(1.01,1.01);
+  box-shadow: 0px 0px 5px 5px rgb(34, 3, 175);
+  
+}
+.content button{
+  padding: 3px 30px;
+  margin-top: 6px;
+  margin-left: 50px;
+  border-radius : 5px;
+  box-shadow: 0px 0px 3px 3px rgba(25, 0, 248, 0.233);  
+  cursor: pointer;
+  font-weight: bold;
+font-size: large;
+}
+.content button:hover{
+transform: scale(1.05,1.05);
+  box-shadow: 0px 0px 5px 5px rgb(17, 1, 87);
+
+}
+
+@media only screen  and (max-width : 400px) {
+  .nevbar{
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+align-items: center;
+justify-content: center;
+  }
+}
