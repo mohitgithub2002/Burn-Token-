@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactApexChart from 'react-apexcharts';
-
+import './home.css'
 const Home = () => {
   const series = [
     {
@@ -45,7 +44,7 @@ const Home = () => {
   };
 
   return (
-    <div id="chart">
+    <div id="chart" className='chart'>
       <ReactApexChart options={options} series={series} type="area" height={350} />
     </div>
   );

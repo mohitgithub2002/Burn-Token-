@@ -1,18 +1,22 @@
 import React, {useState, useEffect} from "react";
-import { useNavigate } from 'react-router-dom';
-// import  ReactDOM  from "react-dom";
+import { useNavigate } from 'react-router-dom'
+var address="0x000000";
 const Nevbar=()=>{
-  
   const [account, setAccount] = useState(false);
 
   const { ethereum } = window;
+  useEffect(()=>{
+    window.ethereum.on('accountsChanged', ([newAccount]) => {
+      setAccount(newAccount);
+    });
+  },[])
     const connectMetamask = async () => {
       if(window.ethereum !== undefined){
         const accounts = await ethereum.request({method: 'eth_requestAccounts'});
         setAccount(accounts[0]);
       }
     }
-    
+    address = account;
     const label = account ? account.substring(0, 6) + "..." + account.substring(account.length - 4) : "Connect";
 
     return (
@@ -31,7 +35,7 @@ const Nevbar=()=>{
 
 const CheckUser = ({ account }) => {
   const navigate = useNavigate();
-  const [isUserRegistered, setIsUserRegistered] = useState(false);
+  
   useEffect(() => {
     const apiendpoint = "https://simon-btc-prediction-api.onrender.com/check_user/"+account;
     console.log(apiendpoint); 
@@ -48,7 +52,6 @@ const CheckUser = ({ account }) => {
         if (response.ok) {
           const data = await response.json();
           console.log(data.data.status1);
-          setIsUserRegistered(data.data.status);
           if (data.data.status1&&data.data.status2) {
             // User is registered, redirect to next page
             navigate('/home');
@@ -66,7 +69,6 @@ const CheckUser = ({ account }) => {
     };
 
     checkUserRegistration(); // Call the function when the component mounts
-    console.log(isUserRegistered)
     // You can also add additional logic to trigger the API call based on certain conditions or events in the DOM
     // For example, you can use an event listener or setInterval to periodically check for user registration updates
 
@@ -84,3 +86,4 @@ const CheckUser = ({ account }) => {
 };
 
 export default Nevbar;
+export {address};

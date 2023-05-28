@@ -8,7 +8,6 @@ import Routes from './Routes';
 const App = () => {
     connectContract1();
     connectContract2();
-    console.log(contract1,contract2);
     
 
     return (
