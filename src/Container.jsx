@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+import './App.css';
 import { contract1 } from "./connectContract";
 import { contract2 } from "./connectContract2";
 import { useNavigate } from 'react-router-dom'
@@ -138,18 +139,18 @@ const Container = () => {
                     <div className="content">
                         <h2>Matrix (MTX)</h2>
                         
-                        <div>
+                        <br/>
                         <label>
                          Email :
                         </label><br/>
                         <input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)}/><br/>
                         <label>
-                        Matrix Contract Address :
+                        Contract Address :
                         </label><br/>
-                        <input  type="text" placeholder= "" value={contract1.address} readOnly={true}
+                        <input  type="text" placeholder= "" value={contract1.address.substring(0, 10) + "....." + contract1.address.substring(contract1.address.length - 10)} readOnly={true}
                         
                         /><br />
-                        </div>
+                        
                         <button disabled={status1?true:false} onClick={handleBurnToken1} >Burn</button>
                         
                     </div>   
@@ -168,7 +169,7 @@ const Container = () => {
                         <label>
                         Contract Address :
                         </label><br/>
-                        <input type="text" placeholder="" value={contract2.address} readOnly={true} /><br />
+                        <input type="text" placeholder="" value={contract2.address.substring(0, 10) + "....." + contract2.address.substring(contract2.address.length - 10)} readOnly={true} /><br />
                         
                         <button disabled={status1?false:true} onClick={handleBurnToken2}>Burn</button>
                     </div>

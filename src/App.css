@@ -29,15 +29,11 @@ height: 10vh;
 width: 100vw;
 background-color: rgba(0, 0, 0, 0.486);
 color: white;
-box-shadow: 0px 0px 3px 3px rgba(25, 0, 248, 0.233);  
+box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.233);  
 
 
 }
-.nevbar:hover{
-  transform: scale(1.01,1.01);
-  box-shadow: 0px 0px 0.5px 0.5px rgb(45, 0, 248);  
-background-color: rgba(45, 0, 248, 0.24);
-}
+
 
 .nevbar button{
   padding: 6px 8px;
@@ -53,8 +49,10 @@ background-color: rgba(45, 0, 248, 0.24);
 }
 
 .container{
-    display: flex;
+  display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   height: 80vh;
   width: 100vw;
   display: flex;
@@ -63,17 +61,22 @@ background-color: rgba(45, 0, 248, 0.24);
 
 }
 .box1,.box2{
-  height: 350px;
-  width: 250px;
+  height: 400px;
+  width: 350px;
   background-color: rgba(0, 0, 0, 0.521);
   color: #fff ;
-  margin: 7% 14%;
+  margin: 10%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   border-radius: 9px;
   box-shadow: 0px 0px 4px 4px  rgba(17, 1, 87, 0.253); 
 }
 
 .box1:hover,.box2:hover{
-  transform:scale(1.2,1.2);
+  
   box-shadow: 0px 0px 5px 5px rgba(5, 4, 8, 0.658);
   
 }
@@ -88,9 +91,8 @@ background-color: rgba(45, 0, 248, 0.24);
 .circle{
   height: 90px;
   width: 90px;
-  position: relative;
+  position:relative;
   top: -45px;
-  left: 80px;
   z-index: 1;
   background-image: url(./image/images/coin.jpg);
   background-repeat: no-repeat;
@@ -101,11 +103,10 @@ background-color: rgba(45, 0, 248, 0.24);
 .content {
   position: relative;
   top: -40px;
-  left: 25px;
   
 }
 .content h2{
-  margin: 5px 50px ;
+  margin: 5px 5px ;
   
 }
 .content label , input{
@@ -120,12 +121,12 @@ background-color: rgba(45, 0, 248, 0.24);
   color:#fff;
   font-weight: bold;
   background-color: rgba(0, 0, 0, 0.514);
-  box-shadow: 1.5px 1.5px 0px 0px blue;
+  box-shadow: 1.5px 1.5px 0px 0px rgb(254, 254, 255);
   border: 2px solid black;
 }
 .content input:hover{
   transform: scale(1.01,1.01);
-  box-shadow: 0px 0px 5px 5px rgb(34, 3, 175);
+  box-shadow: 0px 0px 3px 3px rgb(243, 242, 246);
   
 }
 .content button{
@@ -149,7 +150,18 @@ transform: scale(1.05,1.05);
     height: 15vh;
     display: flex;
     flex-direction: column;
-align-items: center;
-justify-content: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    height: auto;
+    padding: 10px;
+  }
+
+  .box1,
+  .box2 {
+    height: auto;
+    width: 90%;
+    margin: 5%;
   }
 }

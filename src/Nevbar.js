@@ -34,8 +34,8 @@ const Nevbar=()=>{
 };
 
 const CheckUser = ({ account }) => {
-  const navigate = useNavigate();
   
+  const navigate = useNavigate();
   useEffect(() => {
     const apiendpoint = "https://simon-btc-prediction-api.onrender.com/check_user/"+account;
     console.log(apiendpoint); 

@@ -1,22 +1,25 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import './home.css'
+
 const Home = () => {
   const series = [
     {
-      name: 'series1',
-      data: [31, 40, 28, 51, 42, 109, 100]
+      name: 'Actual',
+      data: [31, 40, 28, 51, 42, 109, 100],
+      // color: 'green'
     },
     {
-      name: 'series2',
-      data: [11, 32, 45, 32, 34, 52, 41]
+      name: 'Prediction',
+      data: [11, 32, 45, 32, 34, 52, 41],
+      // color: 'orange'
     }
   ];
 
   const options = {
     chart: {
       height: 350,
-      type: 'area'
+      type: 'area',
+      
     },
     dataLabels: {
       enabled: false
@@ -44,9 +47,21 @@ const Home = () => {
   };
 
   return (
-    <div id="chart" className='chart'>
+    <>
+    <div id="chart" style={{
+      margin: "50px 100px", backgroundColor: "white"
+    }}>
       <ReactApexChart options={options} series={series} type="area" height={350} />
     </div>
+      <div style={{
+      margin: "50px 100px", backgroundColor: "white"
+      }}><h1 style={{
+          display: "flex",
+          justifyContent: "center",
+        color: "orange"
+        
+      }}>Today's Prediction (High) : 26,510.3</h1></div>
+      </>
   );
 };
 export default Home;
