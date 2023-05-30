@@ -3,11 +3,15 @@ import { useNavigate } from 'react-router-dom'
 var address="0x000000";
 const Nevbar=()=>{
   const [account, setAccount] = useState(false);
-
+  const label = account ? account.substring(0, 6) + "..." + account.substring(account.length - 4) : "Connect";
   const { ethereum } = window;
   useEffect(()=>{
+    if(!ethereum){
+      alert("Please install MetaMask");
+    }
     window.ethereum.on('accountsChanged', ([newAccount]) => {
       setAccount(newAccount);
+
     });
   },[])
     const connectMetamask = async () => {
@@ -17,7 +21,7 @@ const Nevbar=()=>{
       }
     }
     address = account;
-    const label = account ? account.substring(0, 6) + "..." + account.substring(account.length - 4) : "Connect";
+    
 
     return (
     <React.Fragment>

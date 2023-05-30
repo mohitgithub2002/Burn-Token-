@@ -12,6 +12,9 @@ const Container = () => {
     useEffect(() => {
         const checkUser = async () => {
             const { ethereum } = window;
+            if(!ethereum){
+                alert("Please install MetaMask");
+            }
             try {
                 const accounts = await ethereum.request({method: 'eth_requestAccounts'});
                 const walletAddress = accounts[0];
@@ -38,7 +41,7 @@ const Container = () => {
         }
 
         checkUser();
-    }, [email,dom]);
+    }, [dom]);
     
     const handleBurnToken1 = async () => {
         const { ethereum } = window;
@@ -108,7 +111,7 @@ const Container = () => {
                 //burn token and call register api
                 const burnTransaction = await contract2.burn(1);
                 await burnTransaction.wait();
-                setDom(true);
+                setDom(false);
                 const response = await fetch('https://simon-btc-prediction-api.onrender.com/register2', {
                     method: 'POST',
                     headers: {
@@ -137,7 +140,7 @@ const Container = () => {
                         <div className="circle">
                         </div>
                     <div className="content">
-                        <h2>Matrix (MTX)</h2>
+                        <h2>Matrix (MAT)</h2>
                         
                         <br/>
                         <label>
