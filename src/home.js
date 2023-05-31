@@ -1,16 +1,54 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import ReactApexChart from 'react-apexcharts';
-
+// import data from './data.json'
+import { address } from './Nevbar';
 const Home = () => {
+  console.log("imported address"+address)
+  const[graphData, setGraphData] = useState([]); // 
+  const[predictData,setPredictData]= useState([]);
+  const[dataDate, setDataDate] = useState([]);
+  useEffect(() => {
+    const apiendpoint = "https://simon-btc-prediction-api.onrender.com/graph-list";
+    console.log(apiendpoint);
+    const getData =  async() => {
+      try {
+        const response = await fetch(apiendpoint, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          
+        });
+        if(response.ok){
+          const data = await response.json();
+          console.log(data)
+          setGraphData(data.Actual);
+          setPredictData(data.Train);
+          setDataDate(data.Date);
+          console.log(graphData);
+        } else {
+          console.log("Error in fetching data");
+        }
+        
+      } catch (error) {
+        console.error('An error occurred', error);
+      }
+    };
+
+    getData(); 
+
+    return () => {
+    };
+  }, []);
   const series = [
     {
       name: 'Actual',
-      data: [31, 40, 28, 51, 42, 109, 100],
+      data: graphData,
       // color: 'green'
     },
     {
       name: 'Prediction',
-      data: [11, 32, 45, 32, 34, 52, 41],
+      data: predictData,
       // color: 'orange'
     }
   ];
@@ -29,15 +67,7 @@ const Home = () => {
     },
     xaxis: {
       type: 'datetime',
-      categories: [
-        '2018-09-19T00:00:00.000Z',
-        '2018-09-19T01:30:00.000Z',
-        '2018-09-19T02:30:00.000Z',
-        '2018-09-19T03:30:00.000Z',
-        '2018-09-19T04:30:00.000Z',
-        '2018-09-19T05:30:00.000Z',
-        '2018-09-19T06:30:00.000Z'
-      ]
+      categories: dataDate
     },
     tooltip: {
       x: {

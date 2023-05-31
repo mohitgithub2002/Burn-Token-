@@ -3,18 +3,22 @@ import './App.css';
 import { contract1 } from "./connectContract";
 import { contract2 } from "./connectContract2";
 import { useNavigate } from 'react-router-dom'
+import  LoadingSpinner  from "./loadingSpinner";
 const Container = () => {
     const navigate = useNavigate();
     const [email, setEmail] = React.useState("");
     const [status1, setStatus1] = React.useState();
     const [status2, setStatus2] = React.useState();
     const [dom, setDom] = React.useState();
+    const [isLoading, setIsLoading] = React.useState(false);
     useEffect(() => {
         const checkUser = async () => {
             const { ethereum } = window;
-            if(!ethereum){
-                alert("Please install MetaMask");
-            }
+            if (!ethereum || !ethereum.isMetaMask) {
+                alert("Please install MetaMask extension.");
+                return;
+              }
+        
             try {
                 const accounts = await ethereum.request({method: 'eth_requestAccounts'});
                 const walletAddress = accounts[0];
@@ -36,6 +40,8 @@ const Container = () => {
                     navigate('/');
                 }
             } catch (error) {
+                alert(error.reason)
+                
               console.error( error);
             }
         }
@@ -44,6 +50,7 @@ const Container = () => {
     }, [dom]);
     
     const handleBurnToken1 = async () => {
+        setIsLoading(true);
         const { ethereum } = window;
         try {
             const accounts = await ethereum.request({method: 'eth_requestAccounts'});
@@ -78,15 +85,18 @@ const Container = () => {
                     }),
                 });
                 await response.json();
+                setIsLoading(false);
                 console.log("Burned Token 1");
             }
         } catch (error) {
             alert(error.reason)
+            setIsLoading(false);
           console.error('Error burning Token 1:', error);
         }
     };
 
     const handleBurnToken2 = async () => {
+        setIsLoading(true);
         const { ethereum } = window;
         try {
 
@@ -123,10 +133,12 @@ const Container = () => {
                     }),
                 });
                 await response.json();
+                setIsLoading(false);
                 console.log("Burned Token 2");
             }
         } catch (error) {
             alert(error.reason)
+            setIsLoading(false);
           console.error('Error burning Token 2:', error);
         }
       };
@@ -154,7 +166,7 @@ const Container = () => {
                         
                         /><br />
                         
-                        <button disabled={status1?true:false} onClick={handleBurnToken1} >Burn</button>
+                        <button disabled={status1?true:false} onClick={handleBurnToken1} >{isLoading?<LoadingSpinner/>:"Burn"}</button>
                         
                     </div>   
                 </div>
@@ -174,7 +186,7 @@ const Container = () => {
                         </label><br/>
                         <input type="text" placeholder="" value={contract2.address.substring(0, 10) + "....." + contract2.address.substring(contract2.address.length - 10)} readOnly={true} /><br />
                         
-                        <button disabled={status1?false:true} onClick={handleBurnToken2}>Burn</button>
+                        <button disabled={status1?false:true} onClick={handleBurnToken2}>{isLoading?<LoadingSpinner/>:"Burn"}</button>
                     </div>
             
                 </div>
