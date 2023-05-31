@@ -6,19 +6,29 @@ const Nevbar=()=>{
   const label = account ? account.substring(0, 6) + "..." + account.substring(account.length - 4) : "Connect";
   const { ethereum } = window;
   useEffect(()=>{
-    if(!ethereum){
-      alert("Please install MetaMask");
-    }
-    window.ethereum.on('accountsChanged', ([newAccount]) => {
-      setAccount(newAccount);
-
-    });
-    ethereum.on('chainChanged', ([chainId]) => {
+    const checkChain = async () => {
+      const chainId = await ethereum.request({ method: 'eth_chainId' });
       console.log(chainId);
-      if(chainId !== "80001"){
-        alert("Please connect to polygon Testnet");
+      if (chainId !== '0x13881') {
+        alert('Please connect to the Mumbai Test network');
       }
-    });
+    }
+    if (window.ethereum && window.ethereum.isMetaMask) {
+      checkChain();
+      window.ethereum.on('accountsChanged', ([newAccount]) => {
+        setAccount(newAccount);
+      });
+      window.ethereum.on('chainChanged', (chainId) => {
+        checkChain();
+      });
+      
+    } else {
+      alert('MetaMask is not installed');
+      return;
+    }
+    
+
+    
   },[])
     const connectMetamask = async () => {
       if(window.ethereum !== undefined){

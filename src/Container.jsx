@@ -14,10 +14,6 @@ const Container = () => {
     useEffect(() => {
         const checkUser = async () => {
             const { ethereum } = window;
-            if (!ethereum || !ethereum.isMetaMask) {
-                alert("Please install MetaMask extension.");
-                return;
-              }
         
             try {
                 const accounts = await ethereum.request({method: 'eth_requestAccounts'});
