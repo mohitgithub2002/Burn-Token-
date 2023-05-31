@@ -13,6 +13,12 @@ const Nevbar=()=>{
       setAccount(newAccount);
 
     });
+    ethereum.on('chainChanged', ([chainId]) => {
+      console.log(chainId);
+      if(chainId !== "80001"){
+        alert("Please connect to polygon Testnet");
+      }
+    });
   },[])
     const connectMetamask = async () => {
       if(window.ethereum !== undefined){
@@ -26,7 +32,7 @@ const Nevbar=()=>{
     return (
     <React.Fragment>
     <div className="nevbar">
-    <h1>Logo</h1>
+    <img src="logo.png" alt="Logo" border="0" width="70" height="70" />
     <h1>Matrix Token</h1>
                 <button onClick={connectMetamask}>{label}</button>
                 
